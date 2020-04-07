@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     public GameObject healthHeart1;
     public GameObject healthHeart2;
     public GameObject healthHeart3;
+    public GameObject healthHeart4;
+    public GameObject healthHeart5;
 
     public Text pickupCountText;
 
@@ -28,31 +30,57 @@ public class UIController : MonoBehaviour
         healthHeart1.SetActive(false);
         healthHeart2.SetActive(false);
         healthHeart3.SetActive(false);
-        
+        healthHeart4.SetActive(false);
+        healthHeart5.SetActive(false);
+
         // Activate depending on the number of hits remaining
-        if (remainingHealth == 3)
+        if (remainingHealth == 5)
         {
             healthHeart1.SetActive(true);
             healthHeart2.SetActive(true);
             healthHeart3.SetActive(true);
+            healthHeart4.SetActive(true);
+            healthHeart5.SetActive(true);
+        }
+        else if (remainingHealth == 4)
+        {
+            healthHeart1.SetActive(true);
+            healthHeart2.SetActive(true);
+            healthHeart3.SetActive(true);
+            healthHeart4.SetActive(true);
+            healthHeart5.SetActive(false);
+        }
+        else if (remainingHealth == 3)
+        {
+            healthHeart1.SetActive(true);
+            healthHeart2.SetActive(true);
+            healthHeart3.SetActive(true);
+            healthHeart4.SetActive(false);
+            healthHeart5.SetActive(false);
         }
         else if (remainingHealth == 2)
         {
             healthHeart1.SetActive(true);
             healthHeart2.SetActive(true);
             healthHeart3.SetActive(false);
+            healthHeart4.SetActive(false);
+            healthHeart5.SetActive(false);
         }
         else if (remainingHealth == 1)
         {
             healthHeart1.SetActive(true);
             healthHeart2.SetActive(false);
-            healthHeart3.SetActive(false);  
+            healthHeart3.SetActive(false);
+            healthHeart4.SetActive(false);
+            healthHeart5.SetActive(false);
         }
         else
         {
             healthHeart1.SetActive(false);
             healthHeart2.SetActive(false);
             healthHeart3.SetActive(false);
+            healthHeart4.SetActive(false);
+            healthHeart5.SetActive(false);
         }
     }
 

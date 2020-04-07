@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -19,10 +20,12 @@ public class PlayerController : MonoBehaviour
     public int pickupLayer;
 
     private Rigidbody _rb;
-    private int _remainingHealth = 3;
+    private int _remainingHealth = 5;
     private int _pickupsCollected = 0;
 
     #endregion Variables
+
+    public AudioSource pickupSound;
     
     
     #region Initialization
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         
         // Tell the ui to display full health/no pickups
-        _remainingHealth = 3;
+        _remainingHealth = 5;
         _pickupsCollected = 0;
         uiController.ReportHealth(_remainingHealth);
         uiController.ReportPickupCount(_pickupsCollected);
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.layer == pickupLayer)
         {
+            
             OnPickupCollision();
         }
         
@@ -114,7 +118,8 @@ public class PlayerController : MonoBehaviour
         // Are we dead?
         if (_remainingHealth <= 0)
         {
-            Debug.Log("Dead!");
+            Debug.Log("dead");
+            SceneManager.LoadScene("GameScene");
         }
     }
     
@@ -126,6 +131,7 @@ public class PlayerController : MonoBehaviour
     private void OnPickupCollision()
     {
         _pickupsCollected += 1;
+        pickupSound.Play();
         uiController.ReportPickupCount(_pickupsCollected);
     }
 
